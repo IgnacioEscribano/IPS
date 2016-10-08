@@ -26,4 +26,8 @@ public class Usuario {
 
         UsuarioDatos.insertarUsuario(this);
     }
+
+    public String getIdUsu() {
+        return idUsu;
+    }
 }

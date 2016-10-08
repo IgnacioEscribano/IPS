@@ -13,4 +13,16 @@ public class UsuarioDatos {
     public static Usuario obtenerUsuarioAPartirDeID(String idUsu) {
         return null;
     }
+
+    public static void insertarNoSocio(String nombre, String apellidos, String dni) {
+
+    }
+
+    public static String obtenerNuevoIDSocio() {
+        return null;
+    }
+
+    public static String obtenerNuevoIDNoSocio() {
+        return null;
+    }
 }

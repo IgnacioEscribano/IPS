@@ -1,4 +1,5 @@
 import CapaDatos.ReservaDatos;
+import CapaNegocio.excepciones.ExcepcionReserva;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,18 +17,26 @@ public class ReservaTest {
 
     @Before
     public void setUp() throws Exception {
-        reserva = new ReservaDao(
-                "res1", ReservaDao.SOCIO, new Date(2016, 10, 20, 11, 0),
-                new Date(2016, 10, 20, 12, 0), "inst1",
-                "soc1");
+        try {
+            reserva = new ReservaDao(
+                    "res1", ReservaDao.SOCIO, new Date(2016, 10, 20, 11, 0),
+                    new Date(2016, 10, 20, 12, 0), "inst1",
+                    "soc1");
+        } catch (ExcepcionReserva excepcionReserva) {
+            excepcionReserva.printStackTrace();
+        }
 
     }
 
     @Test
     public void anadirReservaBBDD() {
-        ReservaDatos.insertarReserva(reserva);
-        assertEquals(reserva.toString(),
-                ReservaDatos.getReservaPorID("res1"));
+        try {
+            ReservaDatos.insertarReserva(reserva, true);
+            assertEquals(reserva.toString(),
+                    ReservaDatos.getReservaPorID("res1"));
+        } catch (ExcepcionReserva excepcionReserva) {
+            excepcionReserva.printStackTrace();
+        }
     }
 
     @Test
